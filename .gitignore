@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.DS_Store
+npm-debug.log*
+
+# Imported source artifact; the extracted React app lives at the repository root.
+Prime-Axis-Business/

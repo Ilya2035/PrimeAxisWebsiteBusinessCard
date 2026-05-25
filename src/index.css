@@ -1,0 +1,166 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* 60-30-10 palette: cream (60) / deep navy (30) / dull gold (10) */
+  --background: 40 30% 96%;       /* #FAF7F0 soft cream */
+  --foreground: 222 47% 15%;      /* deep navy text */
+
+  --border: 35 20% 86%;
+  --input: 35 20% 86%;
+  --ring: 38 40% 50%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 15%;
+  --card-border: 35 20% 88%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 15%;
+  --popover-border: 35 20% 88%;
+
+  --primary: 38 40% 48%;          /* dull gold (10%) */
+  --primary-foreground: 40 30% 98%;
+  --primary-border: hsl(var(--primary));
+
+  --secondary: 222 47% 18%;       /* deep navy (30%) */
+  --secondary-foreground: 40 30% 96%;
+  --secondary-border: hsl(var(--secondary));
+
+  --muted: 40 25% 92%;
+  --muted-foreground: 222 15% 38%;
+  --muted-border: hsl(var(--muted));
+
+  --accent: 38 40% 48%;
+  --accent-foreground: 40 30% 98%;
+  --accent-border: hsl(var(--accent));
+
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --destructive-border: hsl(var(--destructive));
+
+  --app-font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+  --app-font-serif: Georgia, serif;
+  --app-font-mono: Menlo, monospace;
+  --radius: 0.25rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* === Europe map animations === */
+
+/* Pulsing ring around city nodes */
+@keyframes node-pulse {
+  0%   { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+.map-node-pulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: node-pulse 2.4s ease-out infinite;
+}
+
+/* Steady glow on the inner dot */
+@keyframes node-glow {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(184, 151, 90, 0.6)); }
+  50%      { filter: drop-shadow(0 0 6px rgba(184, 151, 90, 1)); }
+}
+
+.map-node-core {
+  animation: node-glow 2.6s ease-in-out infinite;
+}
+
+/* Faint static base of every trade route */
+.map-route-base {
+  opacity: 0.18;
+}
+
+/* Traveling pulse that runs along each route forever */
+@keyframes route-travel {
+  0%   { stroke-dashoffset: 60; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.map-route-pulse {
+  stroke-dasharray: 5 55;
+  animation: route-travel 3.2s linear infinite;
+  filter: drop-shadow(0 0 1.2px hsla(38, 70%, 55%, 0.9));
+}
+
+/* Slow drift on the map itself */
+@keyframes map-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-6px) scale(1.005); }
+}
+
+.map-float {
+  animation: map-float 9s ease-in-out infinite;
+}
+
+/* Soft radial mask on the Hero map — only on lg+; mobile shows the map crisp */
+@media (min-width: 1024px) {
+  .hero-map-mask {
+    -webkit-mask-image: radial-gradient(ellipse 75% 90% at 55% 50%, black 35%, transparent 92%);
+    mask-image: radial-gradient(ellipse 75% 90% at 55% 50%, black 35%, transparent 92%);
+  }
+}

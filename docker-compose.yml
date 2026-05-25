@@ -1,0 +1,29 @@
+services:
+  frontend:
+    build:
+      context: .
+      target: frontend
+    environment:
+      PORT: 4173
+      COMPANY_NAME: ${COMPANY_NAME:-Prime Axis BG Ltd.}
+      CONTACT_EMAIL: ${CONTACT_EMAIL:-info@primeaxisbg.eu}
+      CONTACT_PHONE: ${CONTACT_PHONE:-+359 888 102 811}
+      CONTACT_PHONE_HREF: ${CONTACT_PHONE_HREF:-+359888102811}
+      CONTACT_ADDRESS: ${CONTACT_ADDRESS:-Dr. Petar Skorchev St. 7, 9010 Varna, Bulgaria}
+      WHATSAPP_URL: ${WHATSAPP_URL:-https://wa.me/359888102811}
+      TELEGRAM_URL: ${TELEGRAM_URL:-https://t.me/primeaxisbg}
+      WEBSITE_LABEL: ${WEBSITE_LABEL:-primeaxisbg.eu}
+      FOOTER_LOCATION: ${FOOTER_LOCATION:-Varna, Bulgaria}
+    expose:
+      - "4173"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.27-alpine
+    depends_on:
+      - frontend
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
