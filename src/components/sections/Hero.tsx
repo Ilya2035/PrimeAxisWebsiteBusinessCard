@@ -41,7 +41,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col justify-between lg:justify-center pt-16 pb-3 sm:pt-20 md:pt-28 md:pb-12">
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col justify-between lg:justify-center pt-16 pb-[6.5rem] sm:pt-20 md:pt-28 md:pb-32">
         <div className="container mx-auto px-4 sm:px-6 md:px-12 w-full">
           {/* Top card: tagline + title + subtitle (and on desktop also desc + buttons) */}
           <Reveal direction="up" className="w-full lg:w-[40%] max-w-xl bg-muted/60 backdrop-blur-sm p-3 sm:p-4 lg:bg-transparent lg:backdrop-blur-0 lg:p-0">
@@ -121,7 +121,7 @@ export function Hero() {
       </div>
 
       {/* Stat strip */}
-      <div className="relative z-10 border-t border-border bg-muted/60 backdrop-blur-sm">
+      <div className="absolute inset-x-0 bottom-0 z-20 border-t border-border bg-muted/90 backdrop-blur-sm">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-border">
             {stats.map((stat, i) => {
@@ -132,14 +132,14 @@ export function Hero() {
                 .filter(Boolean)
                 .join(' ');
               return (
-              <Reveal key={i} direction="up" delay={i * 100} className={`py-3 px-3 md:py-6 md:px-8 group ${mobileBorders}`}>
+              <div key={i} className={`py-3 px-3 md:py-6 md:px-8 group ${mobileBorders}`}>
                 <div className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-[0.18em] mb-0.5 md:mb-1 group-hover:text-primary transition-colors duration-300">
                   {stat.label}
                 </div>
                 <div className="text-xs md:text-base font-semibold text-foreground tracking-wide">
                   {stat.value}
                 </div>
-              </Reveal>
+              </div>
               );
             })}
           </div>
