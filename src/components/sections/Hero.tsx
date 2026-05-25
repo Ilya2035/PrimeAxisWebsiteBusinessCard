@@ -16,7 +16,7 @@ export function Hero() {
   ];
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col bg-muted overflow-hidden">
+    <section id="hero" className="relative min-h-[100svh] flex flex-col bg-muted overflow-hidden">
       {/* subtle ambient gradient */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -41,7 +41,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 flex-1 flex flex-col justify-between lg:justify-center pt-16 pb-3 sm:pt-20 md:pt-28 md:pb-12">
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col justify-between lg:justify-center pt-16 pb-3 sm:pt-20 md:pt-28 md:pb-12">
         <div className="container mx-auto px-4 sm:px-6 md:px-12 w-full">
           {/* Top card: tagline + title + subtitle (and on desktop also desc + buttons) */}
           <Reveal direction="up" className="w-full lg:w-[40%] max-w-xl bg-muted/60 backdrop-blur-sm p-3 sm:p-4 lg:bg-transparent lg:backdrop-blur-0 lg:p-0">
