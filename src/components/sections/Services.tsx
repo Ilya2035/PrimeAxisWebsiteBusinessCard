@@ -35,7 +35,7 @@ export function Services() {
               <Reveal key={service.id} direction="up" delay={index * 100}>
               <div
                 data-testid={`card-service-${service.id}`}
-                className="group bg-card border border-border p-3 md:p-6 hover:border-primary/60 hover:-translate-y-1 hover:shadow-lg hover:shadow-secondary/5 transition-all duration-400 flex flex-col h-full"
+                className="group bg-card/70 backdrop-blur-md border border-border p-3 md:p-6 hover:border-primary/60 hover:bg-card/85 hover:-translate-y-1 hover:shadow-lg hover:shadow-secondary/10 transition-all duration-400 flex flex-col h-full"
               >
                 <div className="relative mb-2 md:mb-4 w-9 h-9 md:w-12 md:h-12">
                   {/* Animated pulse ring (visible on hover) */}
@@ -48,10 +48,10 @@ export function Services() {
                     {service.icon}
                   </div>
                 </div>
-                <h3 className="text-sm md:text-lg font-semibold text-foreground mb-1.5 md:mb-2 leading-snug group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-sm md:text-lg font-semibold text-secondary mb-1.5 md:mb-2 leading-snug group-hover:text-primary transition-colors duration-300">
                   {t(service.titleKey)}
                 </h3>
-                <p className="text-xs md:text-base text-muted-foreground leading-relaxed">
+                <p className="text-xs md:text-base text-foreground/90 font-medium leading-relaxed">
                   {t(service.descKey)}
                 </p>
               </div>

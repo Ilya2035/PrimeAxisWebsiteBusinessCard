@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useI18n } from '@/lib/i18n';
+import logoMark from '@/assets/logo-mark.png';
 
 export function Navbar() {
   const { language, setLanguage, t } = useI18n();
@@ -29,10 +30,12 @@ export function Navbar() {
           className="flex items-center gap-3 group"
           data-testid="button-logo"
         >
-          <div className="w-7 h-7 rounded-full border border-secondary flex items-center justify-center group-hover:border-primary transition-colors duration-300">
-            <div className="w-2.5 h-2.5 bg-primary rounded-full"></div>
-          </div>
-          <span className="text-lg font-bold tracking-[0.18em] text-foreground">PRIME AXIS</span>
+          <img
+            src={logoMark}
+            alt="Prime Axis BG"
+            className="h-14 md:h-14 lg:h-16 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80"
+            draggable={false}
+          />
         </button>
 
         <div className="hidden md:flex items-center gap-10">
@@ -50,7 +53,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <div className="flex border border-border bg-card/70 backdrop-blur-sm">
-            {(['EN', 'RU'] as const).map((lang) => (
+            {(['EN', 'BG'] as const).map((lang) => (
               <button
                 key={lang}
                 data-testid={`button-lang-${lang.toLowerCase()}`}

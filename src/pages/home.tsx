@@ -8,6 +8,8 @@ import { Contact } from '@/components/sections/Contact';
 import { ScrollDock } from '@/components/ScrollDock';
 import { useI18n } from '@/lib/i18n';
 import { Reveal } from '@/components/Reveal';
+import { SeamlessVideo } from '@/components/SeamlessVideo';
+import logoMarkOnly from '@/assets/logo-mark-only.png';
 
 function About() {
   const { t } = useI18n();
@@ -19,8 +21,12 @@ function About() {
   ];
 
   return (
-    <section id="about" className="min-h-screen lg:min-h-[50vh] flex flex-col justify-center py-12 md:py-16 lg:py-12 bg-background">
-      <div className="container mx-auto px-6 md:px-12 w-full">
+    <section id="about" className="relative min-h-screen lg:min-h-[50vh] flex flex-col justify-center py-12 md:py-16 lg:py-12 bg-background overflow-hidden">
+      {/* Aerial drone footage of a truck on a highway — seamlessly looped */}
+      <SeamlessVideo src={`${import.meta.env.BASE_URL}about-bg.mp4`} fadeSeconds={1.4} />
+      {/* Cream wash so text remains readable on top of the footage */}
+      <div className="absolute inset-0 bg-background/70 pointer-events-none" aria-hidden="true" />
+      <div className="container mx-auto px-6 md:px-12 w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center">
           <Reveal direction="right">
             <div className="flex items-center gap-4 mb-4 md:mb-6">
@@ -29,7 +35,7 @@ function About() {
                 {t('about.title')}
               </h2>
             </div>
-            <p className="text-sm md:text-lg text-muted-foreground leading-relaxed max-w-xl">
+            <p className="text-sm md:text-lg text-foreground/90 font-medium leading-relaxed max-w-xl">
               {t('about.desc')}
             </p>
           </Reveal>
@@ -48,7 +54,7 @@ function About() {
                     <h3 className="text-sm md:text-base font-semibold text-foreground mb-0.5 md:mb-1">
                       {t(f.titleKey)}
                     </h3>
-                    <p className="text-xs md:text-base text-muted-foreground leading-relaxed">
+                    <p className="text-xs md:text-base text-foreground/90 font-medium leading-relaxed">
                       {t(f.descKey)}
                     </p>
                   </div>

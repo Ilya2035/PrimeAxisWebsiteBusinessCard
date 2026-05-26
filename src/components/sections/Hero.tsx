@@ -16,7 +16,7 @@ export function Hero() {
   ];
 
   return (
-    <section id="hero" className="relative min-h-[100svh] flex flex-col bg-muted overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col bg-muted overflow-hidden">
       {/* subtle ambient gradient */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -41,7 +41,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col justify-between lg:justify-center pt-16 pb-32 sm:pt-20 md:pt-28 md:pb-32">
+      <div className="relative z-10 flex-1 flex flex-col justify-between lg:justify-center pt-16 pb-3 sm:pt-20 md:pt-28 md:pb-12">
         <div className="container mx-auto px-4 sm:px-6 md:px-12 w-full">
           {/* Top card: tagline + title + subtitle (and on desktop also desc + buttons) */}
           <Reveal direction="up" className="w-full lg:w-[40%] max-w-xl bg-muted/60 backdrop-blur-sm p-3 sm:p-4 lg:bg-transparent lg:backdrop-blur-0 lg:p-0">
@@ -90,7 +90,7 @@ export function Hero() {
         </div>
 
         {/* Mobile-only bottom card: description + buttons, sits just above the stat strip with a small gap */}
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 w-full mb-4 lg:hidden">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 w-full lg:hidden">
           <Reveal direction="up" delay={150} className="w-full max-w-xl bg-muted/60 backdrop-blur-sm p-3 sm:p-4">
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4">
               {t('hero.desc')}
@@ -121,28 +121,30 @@ export function Hero() {
       </div>
 
       {/* Stat strip */}
-      <div className="absolute inset-x-0 bottom-0 z-20 border-t border-border bg-muted/90 backdrop-blur-sm">
+      <div className="relative z-10 border-t border-border bg-muted/60 backdrop-blur-sm">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-border">
-            {stats.map((stat, i) => {
-              const mobileBorders = [
-                i % 2 === 0 ? 'border-r border-border md:border-r-0' : '',
-                i < 2 ? 'border-b border-border md:border-b-0' : '',
-              ]
-                .filter(Boolean)
-                .join(' ');
-              return (
-              <div key={i} className={`py-3 px-3 md:py-6 md:px-8 group ${mobileBorders}`}>
-                <div className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-[0.18em] mb-0.5 md:mb-1 group-hover:text-primary transition-colors duration-300">
-                  {stat.label}
-                </div>
-                <div className="text-xs md:text-base font-semibold text-foreground tracking-wide">
-                  {stat.value}
-                </div>
-              </div>
-              );
-            })}
-          </div>
+          <Reveal direction="up">
+            <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-border">
+              {stats.map((stat, i) => {
+                const mobileBorders = [
+                  i % 2 === 0 ? 'border-r border-border md:border-r-0' : '',
+                  i < 2 ? 'border-b border-border md:border-b-0' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ');
+                return (
+                  <div key={i} className={`py-3 px-3 md:py-6 md:px-8 group ${mobileBorders}`}>
+                    <div className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-[0.18em] mb-0.5 md:mb-1 group-hover:text-primary transition-colors duration-300">
+                      {stat.label}
+                    </div>
+                    <div className="text-xs md:text-base font-semibold text-foreground tracking-wide">
+                      {stat.value}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

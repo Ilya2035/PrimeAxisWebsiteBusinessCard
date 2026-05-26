@@ -20,6 +20,19 @@ export function Markets() {
 
   return (
     <section id="markets" className="min-h-screen lg:min-h-[50vh] flex flex-col justify-center py-12 md:py-16 lg:py-12 bg-background relative overflow-hidden">
+      {/* Looping silk fabric video background (shared with Services) */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        src={`${import.meta.env.BASE_URL}silk-bg.mp4`}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+      />
+      {/* Cream wash so cards remain readable */}
+      <div className="absolute inset-0 bg-background/55 pointer-events-none" aria-hidden="true" />
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <Reveal direction="right">
           <div className="flex items-center gap-4 mb-6 md:mb-14">

@@ -14,14 +14,15 @@ const NODES: { x: number; y: number; delay: number; label?: string }[] = [
   { x: 43, y: 57, delay: 0.6, label: 'Rome' },
   { x: 62, y: 60, delay: 1.4, label: 'Istanbul' },
   { x: 51, y: 48, delay: 0.5, label: 'Vienna' },
-  { x: 70, y: 37, delay: 1.6, label: 'Moscow' },
+  { x: 76, y: 56, delay: 1.6, label: 'Caucasus' },
   { x: 50, y: 42, delay: 0.9, label: 'Prague' },
   { x: 26, y: 60, delay: 1.2, label: 'Madrid' },
   { x: 77, y: 78, delay: 1.8, label: 'Arabia' },
   { x: 87, y: 78, delay: 2.0, label: 'UAE' },
+  { x: 82, y: 45, delay: 1.7, label: 'Kazakhstan' },
 ];
 
-const VISIBLE_NODE_INDICES = new Set([0, 1, 2, 3, 4, 5, 8, 9, 10, 11, 12]); // London, Paris, Berlin, Warsaw, Sofia, Rome, Moscow, Prague, Madrid, Arabia, UAE
+const VISIBLE_NODE_INDICES = new Set([0, 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13]); // London, Paris, Berlin, Warsaw, Sofia, Rome, Caucasus, Prague, Madrid, Arabia, UAE, North Caucasus
 
 const ROUTES: { from: number; to: number; delay: number }[] = [
   { from: 4, to: 0,  delay: 0.0 }, // Sofia → London
@@ -34,6 +35,7 @@ const ROUTES: { from: number; to: number; delay: number }[] = [
   { from: 4, to: 10, delay: 2.1 }, // Sofia → Madrid
   { from: 4, to: 11, delay: 2.4 }, // Sofia → Arabia
   { from: 4, to: 12, delay: 2.7 }, // Sofia → UAE
+  { from: 4, to: 13, delay: 3.0 }, // Sofia → Kazakhstan
 ];
 
 function curvedPath(x1: number, y1: number, x2: number, y2: number) {
@@ -108,7 +110,7 @@ export function EuropeMap({
                   strokeWidth="0.32"
                   strokeLinecap="round"
                   className="map-route-pulse"
-                  style={{ animationDelay: `${r.delay}s` }}
+                  style={{ animationDelay: `-${r.delay}s` }}
                 />
               </g>
             );

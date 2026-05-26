@@ -16,7 +16,7 @@ export function Reveal({
   direction = 'up',
   delay = 0,
   className = '',
-  threshold = 0.15,
+  threshold = 0,
   distance = 32,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,8 +26,13 @@ export function Reveal({
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold, rootMargin: '0px 0px -8% 0px' },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold, rootMargin: '0px 0px 0px 0px' },
     );
     observer.observe(el);
     return () => observer.disconnect();
