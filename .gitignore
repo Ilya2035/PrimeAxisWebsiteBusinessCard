@@ -4,5 +4,8 @@ dist/
 .DS_Store
 npm-debug.log*
 
+# Local Let's Encrypt data generated on the server.
+certbot/
+
 # Imported source artifact; the extracted React app lives at the repository root.
 Prime-Axis-Business/
