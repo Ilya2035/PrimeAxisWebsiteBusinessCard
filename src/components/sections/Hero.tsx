@@ -41,7 +41,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 flex-1 min-h-0 flex flex-col justify-between lg:justify-center pt-16 pb-[6.5rem] sm:pt-20 md:pt-28 md:pb-32">
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col justify-between lg:justify-center pt-16 pb-32 sm:pt-20 md:pt-28 md:pb-32">
         <div className="container mx-auto px-4 sm:px-6 md:px-12 w-full">
           {/* Top card: tagline + title + subtitle (and on desktop also desc + buttons) */}
           <Reveal direction="up" className="w-full lg:w-[40%] max-w-xl bg-muted/60 backdrop-blur-sm p-3 sm:p-4 lg:bg-transparent lg:backdrop-blur-0 lg:p-0">
@@ -90,7 +90,7 @@ export function Hero() {
         </div>
 
         {/* Mobile-only bottom card: description + buttons, sits just above the stat strip with a small gap */}
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 w-full lg:hidden">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 w-full mb-4 lg:hidden">
           <Reveal direction="up" delay={150} className="w-full max-w-xl bg-muted/60 backdrop-blur-sm p-3 sm:p-4">
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4">
               {t('hero.desc')}
