@@ -23,7 +23,11 @@ function About() {
   return (
     <section id="about" className="relative min-h-screen lg:min-h-[50vh] flex flex-col justify-center py-12 md:py-16 lg:py-12 bg-background overflow-hidden">
       {/* Aerial drone footage of a truck on a highway — seamlessly looped */}
-      <SeamlessVideo src={`${import.meta.env.BASE_URL}about-bg.mp4`} fadeSeconds={1.4} />
+      <SeamlessVideo
+        src={`${import.meta.env.BASE_URL}about-bg.mp4`}
+        fadeSeconds={1.4}
+        videoClassName="lg:object-[center_62%]"
+      />
       {/* Cream wash so text remains readable on top of the footage */}
       <div className="absolute inset-0 bg-background/70 pointer-events-none" aria-hidden="true" />
       <div className="container mx-auto px-6 md:px-12 w-full relative z-10">

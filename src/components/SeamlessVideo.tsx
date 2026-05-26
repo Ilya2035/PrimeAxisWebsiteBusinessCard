@@ -12,10 +12,12 @@ import React, { useEffect, useRef } from 'react';
 export function SeamlessVideo({
   src,
   className = '',
+  videoClassName = '',
   fadeSeconds = 1.0,
 }: {
   src: string;
   className?: string;
+  videoClassName?: string;
   fadeSeconds?: number;
 }) {
   const aRef = useRef<HTMLVideoElement>(null);
@@ -80,7 +82,7 @@ export function SeamlessVideo({
   }, [fadeSeconds, src]);
 
   const common =
-    'absolute inset-0 w-full h-full object-cover pointer-events-none transition-none';
+    `absolute inset-0 w-full h-full object-cover pointer-events-none transition-none ${videoClassName}`;
 
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`} aria-hidden="true">
